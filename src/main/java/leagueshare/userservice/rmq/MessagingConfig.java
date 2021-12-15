@@ -8,8 +8,8 @@ import org.springframework.amqp.core.*;
 @Configuration
 public class MessagingConfig {
 
-    static final String topicExchangeName = "leagueshare-exchanger";
-    static final String queueName = "user-queue";
+    public static final String topicExchangeName = "leagueshare-exchanger";
+    public static final String queueName = "user-queue";
     public static final String routingKey = "leagueshare-key";
 
 
