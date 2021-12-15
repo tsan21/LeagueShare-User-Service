@@ -29,7 +29,11 @@ public class UserController {
         this.msgConfig = msgConfig;
     }
 
-    @RabbitListener(queuesToDeclare = @Queue(name = "user-queue", durable = "true"))
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue(value = MessagingConfig.queueName, durable = "true"),
+            exchange = @Exchange(value = MessagingConfig.topicExchangeName, ignoreDeclarationExceptions = "true"),
+            key = MessagingConfig.routingKey)
+    )
     public void receiveMsg(String message){
         create(message);
     }
