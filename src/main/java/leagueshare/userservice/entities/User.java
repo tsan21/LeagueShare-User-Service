@@ -14,6 +14,7 @@ public class User {
     @Id
     @GeneratedValue
     private Long user_id;
+    private String keycloakId;
     private String userName;
     private String email;
     private String firstName;
@@ -22,7 +23,8 @@ public class User {
     public User() {
     }
 
-    public User(String userName, String email, String firstName, String lastName) {
+    public User(String keycloakId, String userName,  String email, String firstName, String lastName) {
+        this.keycloakId = keycloakId;
         this.userName = userName;
         this.email = email;
         this.firstName = firstName;
