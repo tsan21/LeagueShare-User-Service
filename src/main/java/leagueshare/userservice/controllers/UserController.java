@@ -5,10 +5,7 @@ import com.google.gson.JsonObject;
 import leagueshare.userservice.entities.User;
 import leagueshare.userservice.repos.UserRepo;
 import leagueshare.userservice.rmq.MessagingConfig;
-import org.apache.tomcat.util.json.JSONParser;
-import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,11 +26,7 @@ public class UserController {
         this.msgConfig = msgConfig;
     }
 
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = MessagingConfig.queueName, durable = "true"),
-            exchange = @Exchange(value = MessagingConfig.topicExchangeName, ignoreDeclarationExceptions = "true"),
-            key = MessagingConfig.routingKey)
-    )
+    @RabbitListener(queuesToDeclare = @Queue(name = "user-queue", durable = "true"))
     public void receiveMsg(String message){
         create(message);
     }
