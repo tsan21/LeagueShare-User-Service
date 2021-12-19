@@ -3,18 +3,12 @@
 #COPY ${JAR_FILE} app.jar
 #ENTRYPOINT ["java","-jar","/app.jar"]
 
-# syntax=docker/dockerfile:1
+FROM maven:3.8.1-jdk-11
 
-# syntax=docker/dockerfile:1
+WORKDIR /usr/src/app
 
-FROM openjdk:16-alpine3.13
+COPY . /usr/src/app
+RUN mvn package -Dmaven.test.skip=true
+
 EXPOSE 8092
-WORKDIR /app
-
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
-
-COPY src ./src
-
-CMD ["./mvnw", "spring-boot:run"]
+CMD [ "sh", "-c", "mvn spring-boot:run" ]
