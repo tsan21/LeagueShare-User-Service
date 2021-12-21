@@ -1,0 +1,6 @@
+leagueshare\userservice\entities\User.class
+leagueshare\userservice\rmq\MessagingConfig.class
+leagueshare\userservice\controllers\UserController.class
+leagueshare\userservice\security\Config.class
+leagueshare\userservice\repos\UserRepo.class
+leagueshare\userservice\UserServiceApplication.class
