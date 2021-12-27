@@ -55,7 +55,7 @@ public class UserController {
 
     @GetMapping("/test")
     public String test() {
-        return "test1234";
+        return "test12345";
     }
 
 }
